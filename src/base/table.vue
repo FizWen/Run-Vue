@@ -1,0 +1,162 @@
+<template>
+    <div class="main-info" id="start">
+        <h2>table 表格</h2>
+        <p>表格组件，展示大量结构化数据。</p>
+        <h3>基础用法</h3>
+        <p>简单默认样式表格</p>
+        <div class="m-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>年龄</th>
+                        <th>班级</th>
+                        <th>联系电话</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>张三</td>
+                        <td>女</td>
+                        <td>20</td>
+                        <td>1711</td>
+                        <td>13878915786</td>
+                    </tr>
+                    <tr>
+                        <td>01</td>
+                        <td>张三</td>
+                        <td>女</td>
+                        <td>20</td>
+                        <td>1711</td>
+                        <td>1387891578613878</td>
+                    </tr>
+                    <tr>
+                        <td>01</td>
+                        <td>张三</td>
+                        <td>女</td>
+                        <td>20</td>
+                        <td>1711</td>
+                        <td>13878915786</td>
+                    </tr>
+                    <tr>
+                        <td>01</td>
+                        <td>张三</td>
+                        <td>女</td>
+                        <td>20</td>
+                        <td>1711</td>
+                        <td>13878915786</td>
+                    </tr>
+                    <tr>
+                        <td>01</td>
+                        <td>张三</td>
+                        <td>女</td>
+                        <td>20</td>
+                        <td>1711</td>
+                        <td>13878915786</td>
+                    </tr>
+                </tbody>
+            </table>             
+        </div>
+        <p>有分隔线的表格</p>
+        <div class="m-table s-border">
+            <table>
+                <thead>
+                    <tr>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>年龄</th>
+                        <th>班级</th>
+                        <th>联系电话</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>张三</td>
+                        <td>女</td>
+                        <td>20</td>
+                        <td>1711</td>
+                        <td>13878915786</td>
+                    </tr>
+                    <tr>
+                        <td>01</td>
+                        <td>张三</td>
+                        <td>女</td>
+                        <td>20</td>
+                        <td>1711</td>
+                        <td>1387891578613878</td>
+                    </tr>
+                    <tr>
+                        <td>01</td>
+                        <td>张三</td>
+                        <td>女</td>
+                        <td>20</td>
+                        <td>1711</td>
+                        <td>13878915786</td>
+                    </tr>
+                </tbody>
+            </table>             
+        </div>
+        <p>条纹相隔的表格</p>
+        <div class="m-table s-border s-stripe">
+            <table>
+                <thead>
+                    <tr>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>年龄</th>
+                        <th>班级</th>
+                        <th>联系电话</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>张三</td>
+                        <td>女</td>
+                        <td>20</td>
+                        <td>1711</td>
+                        <td>13878915786</td>
+                    </tr>
+                    <tr>
+                        <td>01</td>
+                        <td>张三</td>
+                        <td>女</td>
+                        <td>20</td>
+                        <td>1711</td>
+                        <td>1387891578613878</td>
+                    </tr>
+                    <tr>
+                        <td>01</td>
+                        <td>张三</td>
+                        <td>女</td>
+                        <td>20</td>
+                        <td>1711</td>
+                        <td>13878915786</td>
+                    </tr>
+                </tbody>
+            </table>             
+        </div>
+    </div>
+</template>
+
+<script>
+    import uiButton from '../components/base/button'
+    import codeBlock from '../components/codeBlock'
+    export default {
+        name: 'start',
+        components: {
+            uiButton,
+            codeBlock
+        }
+    }
+</script>
+
+<style lang="less">
+     @import '../assets/less/table.less';
+</style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="paper run-slider" :class="showSlider ? '' : 'hide-slider' ">
+    <div class="paper run-slider" :class="showSlider ? '' : 'hide-slider' " @click="tests($event)">
         <div class="mu-appbar leftbar">
             <a class="left" href="/">
               <img src="../assets/images/logo2.png" class="logo"/>
@@ -15,6 +15,23 @@
           <div class="select-down select-content">
               <span class="text-color">Vue : </span>2.1.0
           </div>
+        </div>
+
+        <div class="version slider-content">
+          <span class="slider-title">Q Q 群 : </span>
+          <div class="select-down select-content">
+              <a class="text-color" href="https://jq.qq.com/?_wv=1027&k=44jw2MJ" target="_blank">  &nbsp;58365308 </a>
+          </div>
+        </div>
+
+        <div class="slider-content" style="margin-bottom: 20px;">
+          <!-- <span class="slider-title">Q Q 群 : </span>
+          <div class="select-down select-content">
+              <a class="text-color" href="https://jq.qq.com/?_wv=1027&k=44jw2MJ" target="_blank">  &nbsp;58365308 </a>
+          </div> -->
+          <a href="http://xc.hubwiz.com/course/592ee9b2b343f27b0ae1ba99?affid=vuejs-cn" target="_blank" style="width: 100%;">
+            <img src="../assets/images/666.png" style="width: 100%; height: 260px;"/>
+          </a>
         </div>
 
         <!--如何使用-->
@@ -71,18 +88,13 @@
             </slide-tree>
         </ul>
 
-        <cp-select :title=" '关于我们' " :to=" '/about' " :plus="true"></cp-select>
-        <hr class="divider">
-        <cp-list :texts=" aboutUsText "></cp-list>
-        <cp-list :texts=" aboutUsText "></cp-list>
     </div>
 
 </template>
 
 <script>
 import SlideTree from '../slide-tree/slide-tree'
-import cpSelect from '../cp-select/cp-select'
-import cpList from '../cp-list/cp-list'
+
 export default {
     name: 'slide',
     data: function () {
@@ -104,8 +116,10 @@ export default {
                 name: '个性定制',
                 router: '/customize',
                 children: [
-                    {name: '一键换肤', router: '/customize/skin'},
-                    {name: '选择主题', router: '/customize/theme'}
+                    // {name: '一键换肤', router: '/customize/skin'},
+                    // {name: '选择主题', router: '/customize/theme'}
+                    {name: '一键换肤', router: '/base/color'},
+                    {name: '选择主题', router: '/base/typography'}
                 ]
             },
             baseCptData: {
@@ -116,56 +130,58 @@ export default {
                     {name: 'Color 色彩', router: '/base/color'},
                     {name: 'Typography 字体', router: '/base/typography'},
                     {name: 'Icon - loading', router: '/base/icon'},
-                    {name: 'Button', router: '/base/button'}
+                    {name: 'Button', router: '/base/button'},
+                    {name: 'Table', router: '/base/table'}
                 ]
             },
             fromCptData: {
                 name: '表单组件',
-                router: '/from',
+                router: '/form',
                 children: [
-                    {name: 'Checkbox ', router: '/from/checkbox'},
-                    {name: 'Radio ', router: '/from/radio'},
-                    {name: 'Input ', router: '/from/input'},
-                    {name: 'Input-password ', router: '/from/password'},
-                    {name: 'Input-search ', router: '/from/search'},
-                    {name: 'Textarea ', router: '/from/textarea'},
-                    {name: 'Switch ', router: '/from/switch'},
-                    {name: 'Select ', router: '/from/select'}
+                    {name: 'Checkbox ', router: '/form/checkbox'},
+                    {name: 'Radio ', router: '/form/radio'},
+                    {name: 'Input ', router: '/form/input'},
+                    {name: 'InputNumber', router: '/form/inputnumber'},
+                    {name: 'InputSearch ', router: '/form/search'},
+                    {name: 'Textarea ', router: '/form/textarea'},
+                    {name: 'Switch ', router: '/form/switch'},
+                    {name: 'Select ', router: '/form/select'}
                 ]
             },
             funcCptData: {
                 name: '功能组件',
                 router: '/func',
                 children: [
-                    {name: 'Talble', router: '/from/checkbox'},
-                    {name: 'Swipe', router: '/from/checkbox'},
-                    {name: 'DatePicker', router: '/from/checkbox'},
-                    {name: 'Toast', router: '/from/checkbox'},
-                    {name: 'Modal', router: '/from/checkbox'},
-                    {name: 'Progress', router: '/from/checkbox'},
-                    {name: 'BackTop', router: '/from/checkbox'},
-                    {name: 'Lazy load', router: '/from/checkbox'}
+                    // {name: 'Table', router: '/func/table'},
+                    {name: 'Swipe', router: '/func/swipe'},
+                    {name: 'DatePicker', router: '/func/datePicker'},
+                    {name: 'Toast', router: '/func/toast'},
+                    {name: 'Modal', router: '/func/modal'},
+                    {name: 'Progress', router: '/func/progress'},
+                    {name: 'BackTop', router: '/func/backTop'},
+                    {name: 'Lazy load', router: '/func/lazyLoad'},
+                    {name: 'AutoheightTextare', router: '/func/autoheightTextarea'}
                 ]
             },
             abouUs: {
                 name: '关于我们',
                 router: '/about',
                 children: [
-                    {name: '开发者', router: '/about/dev'}
+                    {name: '开发者', router: '/about/dev'},
+                    {name: '意见反馈', router: '/about/feedback'}
                 ]
             },
             moreInfo: {
                 name: '项目进度以及版本',
                 router: '/pm',
                 children: [
-                    {name: '开发者', router: '/pm/version'}
+                    {name: '项目版本', router: '/pm/version'},
+                    {name: '项目进度', router: '/pm/percent'}
                 ]
             }
         }
     },
     components: {
-        'cp-select': cpSelect,
-        'cp-list': cpList,
         'slide-tree': SlideTree
     },
     computed: {
@@ -176,6 +192,22 @@ export default {
     methods: {
         test () {
             this.$store.dispatch('getShow')
+        },
+        tests (e) {
+            const mq = window.document.body.clientWidth
+            if (mq < 560) {
+                if (e.target.parentElement.className === 'treeTitle bolds') {
+                    this.$store.state.showSlider = true
+                } else {
+                    this.$store.state.showSlider = false
+                }
+            }
+        }
+    },
+    mounted () {
+        const mq = window.document.body.clientWidth
+        if (mq < 560) {
+            this.$store.state.showSlider = false
         }
     }
 }
@@ -266,7 +298,7 @@ i{
     margin-right: 16px;
     line-height: 56px;
     font-size: 16px;
-    width: 100%;
+    // width: 100%;
     border-bottom: 1px solid rgba(0,0,0,.12);
     color: rgba(0,0,0,.87);
     padding-left: 8px;
@@ -303,6 +335,11 @@ i{
   border-radius: 50%;
 }
 
+// @media screen and (max-width: 500px) {
+//     .run-slider{
+//         display: none;
+//     }
+// }
 /*.mu-paper-1 {
   .depth(1);
 }

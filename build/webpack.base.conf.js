@@ -9,11 +9,26 @@ var cssnext = require('postcss-cssnext');
 var flexFallback = require('postcss-flex-fallback');
 
 var env = process.env.NODE_ENV
+
 // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
 // various preprocessor loaders added to vue-loader at the end of this file
 var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
 var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
 var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
+
+// var getPath = function(_path) {
+//   var assetsPublicPath = ''
+//   if (process.env.NODE_ENV === 'production') {
+//       assetsPublicPath = config.build.assetsPublicPath
+//   } else if (process.env.NODE_ENV === 'dist') {
+//       assetsPublicPath = config.dist.assetsPublicPath
+//   } else {
+//       assetsPublicPath = config.dev.assetsPublicPath
+//   }
+//   return path.posix.join(assetsPublicPath, _path)
+// }
+
+// process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath
 
 module.exports = {
   entry: {
@@ -21,8 +36,10 @@ module.exports = {
   },
   output: {
     path: config.build.assetsRoot,
+    // publicPath: getPath(process.env.NODE_ENV),  // 指定了一个在浏览器中被引用的URL地址
     publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
-    filename: '[name].js'
+    filename: process.env.NODE_ENV === 'production' ? '[name].js?[chunkhash]' : '[name].js',
+    chunkFilename: process.env.NODE_ENV === 'production' ? 'chunk[id].js?[chunkhash]' : 'chunk[id].js'
   },
   resolve: {
     extensions: ['', '.js', '.vue'],
@@ -49,7 +66,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'eslint',
         include: projectRoot,
-        exclude: [/node_modules/,/static/,/dots/]
+        exclude: [/node_modules/,/static/,/assets/]
       }
     ],
     loaders: [
@@ -72,25 +89,33 @@ module.exports = {
         loader: 'json'
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif)(\?.*)?$/,
         loader: 'url',
         query: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
       },
+      // {
+      //   test: /\.(woff|svg|eot|ttf)\??.*$/,
+      //   loader: 'url?limit=10000',
+      //   query: {
+      //     name: utils.assetsPath('./fonts/[name].[hash:7].[ext]')
+      //   }
+      // },
       {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        test: /\.(woff|eot|ttf|svg)(\?.*)?$/,
         loader: 'url',
         query: {
           limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+          name: env === 'dist' ? utils.assetsPath('style/../fonts/[name].[hash:7].[ext]') : utils.assetsPath('./fonts/[name].[hash:7].[ext]')
         }
       },
       //在原有基础上加上一个postcss的loader就可以了
       {
         test:/\.css$/,
-        loaders:['css-loader','postcss-loader']
+        loaders:['css-loader','postcss-loader'],
+        // name: utils.assetsPath('./style/[name].css')
       }
     ]
   },

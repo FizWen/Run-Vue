@@ -20,7 +20,7 @@
         <div class="banner-height"></div>
     </div>
 
-    <uiCanvas></uiCanvas>
+    <uiCanvas v-if="showCanvas"></uiCanvas>
 
     <div class="index-desc">
         <h3>新特性</h3>
@@ -92,13 +92,24 @@
     import uiCanvas from './canvas/banner'
     export default {
         name: 'index',
+        data () {
+            return {
+                showCanvas: true
+            }
+        },
         methods: {
             start () {
-                this.$router.push('/use/start')
+                this.$router.push('/use/dev')
             }
         },
         components: {
             uiCanvas
+        },
+        mounted () {
+            const mq = window.document.body.clientWidth
+            if (mq < 560) {
+                this.showCanvas = false
+            }
         }
     }
 </script>
